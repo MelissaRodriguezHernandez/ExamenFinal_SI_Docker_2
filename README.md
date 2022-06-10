@@ -119,7 +119,7 @@ CMD ["catalina.sh", "run"]
 Y ejecutamos el comando para monstar la imagen:
 
   ```
-  docker build -t mely1h1r/gestionproyectos-melissa-rodriguez-hernandez . 
+  docker build -t mely1h1r/loginweb . 
  
   ```
 
@@ -127,7 +127,7 @@ Y ejecutamos el comando para monstar la imagen:
 Ahora procederemos a subirlo al dockerHub
   
   ```
-docker push mely1h1r/gestionproyectos-melissa-rodriguez-hernandez
+docker push mely1h1r/loginweb
   ```
  
 
