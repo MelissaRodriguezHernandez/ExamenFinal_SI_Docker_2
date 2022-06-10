@@ -88,11 +88,17 @@ Con todo esto, vamos a la terminal y nos situamos en el directorio donde se encu
 
 Ahora podremos ir a las páginas. Si vamos al localhost:8080 veremos como se despliega la página principal y como podemos registarnos y loguearnos.
   
+![inicioPagina](https://user-images.githubusercontent.com/91748294/173114900-6498de8c-7e9d-4b64-b5f2-4320d49b1988.png)
 
+ ![registration succel](https://user-images.githubusercontent.com/91748294/173115014-505c8291-9c33-4a8b-abb8-ff4d84d6ea09.png)
+
+  ![incio](https://user-images.githubusercontent.com/91748294/173115031-a5f1e2a2-bc5f-429b-9bea-5c0813a889b1.png)
 
  También si vamos a localhost:8081 podremos loguearnos en el phpmyadmin (con el usuario y contraseña que definimos en el docker-compose) y mirar la base de datos.
   
+![inicioPHP](https://user-images.githubusercontent.com/91748294/173115058-4630ab57-365c-4f29-a658-0cb785fa59fd.png)
 
+![phpBases](https://user-images.githubusercontent.com/91748294/173115071-32806f9b-25ca-4f99-a8de-ce81fd09cd2e.png)
   
 </div>
 
@@ -122,6 +128,7 @@ Y ejecutamos el comando para monstar la imagen:
   docker build -t mely1h1r/loginweb . 
  
   ```
+![build](https://user-images.githubusercontent.com/91748294/173115475-06a96235-f716-4fba-87b2-a7d76c43c708.png)
 
 
 Ahora procederemos a subirlo al dockerHub
@@ -129,11 +136,13 @@ Ahora procederemos a subirlo al dockerHub
   ```
 docker push mely1h1r/loginweb
   ```
- 
+ ![push](https://user-images.githubusercontent.com/91748294/173115464-9d9cec2e-75a3-448d-9481-457adc954a43.png)
+
 
   
 Si todo ha salido bien nos saldría algo así, con esto ya podriamos bajarnos el contenedor en cualquier ordenador y ejecutarlo:
   
+![hub](https://user-images.githubusercontent.com/91748294/173115455-0917931b-7dbb-4623-8f92-eade70bc8a05.png)
 
 (Link en el annexo)
   
@@ -142,10 +151,6 @@ Si todo ha salido bien nos saldría algo así, con esto ya podriamos bajarnos el
 <div id= 'con'>
 
 ## Conclusiones
-
-Hemos utilizado como bases los archivos de otro proyecto que ya funcionaba y hemos sustitudo el .war y el .sql por los nuestros.
-
-La parte mas complicada ha sido el funcionamiento de la base de datos, ha dado muchos problemas por los puertos y credenciales.
   
 </div>
 
@@ -153,6 +158,6 @@ La parte mas complicada ha sido el funcionamiento de la base de datos, ha dado m
 
 ## Annexo
   
-[Link del contendor en DockerHub]()
+[Link del contendor en DockerHub](https://hub.docker.com/r/mely1h1r/loginweb)
   
 </div>
