@@ -23,7 +23,47 @@
 El archivo docker compose es un archivo YML donde definiremos los servicios, redes y volúmenes. Lo colocaremos en dentro del directorio junto con todo lo necesario para armar el ambiente. Nuestro docker compose tendra lo necesario para ejecutar el mysql, tomcat y phpmyadmin. Es el siguiente:
 
   ```
-  
+ version: '3.3'
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_vol:/var/lib/mysql
+       - ./mysql-dump:/docker-entrypoint-initdb.d
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: testdb1
+       MYSQL_USER: testuser
+       MYSQL_PASSWORD: root
+     ports:
+       - 3306:3306
+   phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8081:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+   web:
+    build:
+      context: .       
+    depends_on:
+      - db
+    image: tomcat
+    volumes:
+            - ./target/LoginWebApp.war:/usr/local/tomcat/webapps/LoginWebApp.war
+    ports:
+      - '8082:8080'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb1
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: root
+volumes:
+    db_vol:      
+
   ```
   
 </div>
@@ -43,6 +83,7 @@ Con todo esto, vamos a la terminal y nos situamos en el directorio donde se encu
 ```
   sudo docker-compose up -d
   ```
+![compose](https://user-images.githubusercontent.com/91748294/173110932-ea20c331-be48-4ce5-b9f6-08249d585acc.png)
 
 
 Ahora podremos ir a las páginas. Si vamos al localhost:8080 veremos como se despliega la página principal y como podemos registarnos y loguearnos.
@@ -64,6 +105,15 @@ Ahora con nuestro proyecto desplegado procederemos a crear una imagen y contened
 Empezaremos por crear el Dockerfile
 
 ```
+FROM tomcat:latest
+
+LABEL maintainer="Maximo Fernandez"
+
+ADD ./target/LoginWebApp.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080
+
+CMD ["catalina.sh", "run"]
 
   ```
 Y ejecutamos el comando para monstar la imagen:
